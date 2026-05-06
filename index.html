@@ -1,1147 +1,1822 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Furniture World – Crafted for Living</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --cream: #f7f0e6;
-    --cream-dark: #ede3d4;
-    --warm-white: #fdfaf5;
-    --brown-deep: #2c1a0e;
-    --brown-mid: #5c3d1e;
-    --brown-light: #8b5e3c;
-    --gold: #c9972a;
-    --gold-light: #e8b84b;
-    --gold-pale: #f5e5b8;
-    --charcoal: #1e1a17;
-    --charcoal-soft: #3a302a;
-    --text-body: #4a3728;
-    --text-muted: #8a7060;
-    --shadow-warm: rgba(44, 26, 14, 0.12);
-    --shadow-deep: rgba(44, 26, 14, 0.25);
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Furniture World – Crafted for Living</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f7f0e6;
+      --cream-dark: #ede3d4;
+      --warm-white: #fdfaf5;
+      --brown-deep: #2c1a0e;
+      --brown-mid: #5c3d1e;
+      --brown-light: #8b5e3c;
+      --gold: #c9972a;
+      --gold-light: #e8b84b;
+      --gold-pale: #f5e5b8;
+      --charcoal: #1e1a17;
+      --charcoal-soft: #3a302a;
+      --text-body: #4a3728;
+      --text-muted: #8a7060;
+      --shadow-warm: rgba(44, 26, 14, 0.12);
+      --shadow-deep: rgba(44, 26, 14, 0.25);
+    }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--warm-white);
-    color: var(--text-body);
-    overflow-x: hidden;
-  }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--text-body);
+      overflow-x: hidden;
+    }
 
-  /* ─── SCROLLBAR ─── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--cream-dark); }
-  ::-webkit-scrollbar-thumb { background: var(--brown-light); border-radius: 3px; }
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
 
-  /* ─── NAVBAR ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5vw;
-    height: 72px;
-    background: rgba(253, 250, 245, 0.94);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(201, 151, 42, 0.2);
-    transition: box-shadow 0.3s;
-  }
-  nav.scrolled { box-shadow: 0 4px 32px var(--shadow-warm); }
+    ::-webkit-scrollbar-track {
+      background: var(--cream-dark);
+    }
 
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--brown-deep);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-  .nav-logo span { color: var(--gold); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--brown-light);
+      border-radius: 3px;
+    }
 
-  .nav-links {
-    display: flex; align-items: center; gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--text-body);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    position: relative;
-    transition: color 0.2s;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px;
-    background: var(--gold); transition: width 0.3s;
-  }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-links a:hover::after { width: 100%; }
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 72px;
+      background: rgba(253, 250, 245, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201, 151, 42, 0.2);
+      transition: box-shadow 0.3s;
+    }
 
-  .btn-nav {
-    padding: 0.6rem 1.6rem;
-    background: var(--brown-deep);
-    color: var(--cream) !important;
-    border-radius: 2px;
-    font-weight: 600 !important;
-    letter-spacing: 0.06em !important;
-    transition: background 0.25s, transform 0.2s !important;
-  }
-  .btn-nav::after { display: none !important; }
-  .btn-nav:hover { background: var(--gold) !important; color: var(--brown-deep) !important; transform: translateY(-1px); }
+    nav.scrolled {
+      box-shadow: 0 4px 32px var(--shadow-warm);
+    }
 
-  .nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-  .nav-hamburger span { width: 24px; height: 2px; background: var(--brown-deep); transition: all 0.3s; display: block; }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--brown-deep);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
 
-  @media(max-width:768px){
-    .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--warm-white); flex-direction: column; padding: 1.5rem; gap: 1.2rem; border-bottom: 1px solid var(--cream-dark); }
-    .nav-links.open { display: flex; }
-    .nav-hamburger { display: flex; }
-  }
+    .nav-logo span {
+      color: var(--gold);
+    }
 
-  /* ─── HERO ─── */
-  #home {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 100px 5vw 60px;
-    gap: 4rem;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 60%, var(--cream-dark) 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  #home::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,151,42,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
 
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1rem;
-  }
-  .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-body);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.2s;
+    }
 
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 5vw, 5rem);
-    line-height: 1.05;
-    color: var(--brown-deep);
-    margin-bottom: 1.5rem;
-  }
-  .hero-title em { font-style: italic; color: var(--gold); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
 
-  .hero-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    max-width: 420px;
-  }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
 
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
-  .btn-primary {
-    padding: 0.9rem 2.2rem;
-    background: var(--brown-deep);
-    color: var(--cream);
-    border: none; border-radius: 2px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem; font-weight: 600;
-    letter-spacing: 0.05em; text-transform: uppercase;
-    cursor: pointer; text-decoration: none;
-    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: var(--gold); color: var(--brown-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,151,42,0.35); }
+    .btn-nav {
+      padding: 0.6rem 1.6rem;
+      background: var(--brown-deep);
+      color: var(--cream) !important;
+      border-radius: 2px;
+      font-weight: 600 !important;
+      letter-spacing: 0.06em !important;
+      transition: background 0.25s, transform 0.2s !important;
+    }
 
-  .btn-outline {
-    padding: 0.9rem 2.2rem;
-    background: transparent;
-    color: var(--brown-deep);
-    border: 1.5px solid var(--brown-deep);
-    border-radius: 2px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem; font-weight: 600;
-    letter-spacing: 0.05em; text-transform: uppercase;
-    cursor: pointer; text-decoration: none;
-    transition: all 0.25s;
-    display: inline-block;
-  }
-  .btn-outline:hover { background: var(--brown-deep); color: var(--cream); transform: translateY(-2px); }
+    .btn-nav::after {
+      display: none !important;
+    }
 
-  .hero-price-badge {
-    display: inline-flex; flex-direction: column;
-    background: var(--gold-pale);
-    border-left: 3px solid var(--gold);
-    padding: 0.8rem 1.2rem;
-    border-radius: 0 4px 4px 0;
-  }
-  .hero-price-badge small { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brown-mid); font-weight: 600; }
-  .hero-price-badge strong { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--brown-deep); }
+    .btn-nav:hover {
+      background: var(--gold) !important;
+      color: var(--brown-deep) !important;
+      transform: translateY(-1px);
+    }
 
-  .hero-img-wrap {
-    position: relative;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero-img-wrap::before {
-    content: '';
-    position: absolute;
-    width: 85%; height: 85%;
-    background: linear-gradient(135deg, var(--gold-pale), var(--cream-dark));
-    border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
-    z-index: 0;
-    animation: blobFloat 8s ease-in-out infinite;
-  }
-  @keyframes blobFloat {
-    0%,100% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.05) rotate(3deg); }
-  }
-  .hero-img {
-    position: relative; z-index: 1;
-    width: 90%; max-width: 520px;
-    border-radius: 4px;
-    box-shadow: 0 24px 80px var(--shadow-deep);
-    object-fit: cover; height: 520px;
-    transition: transform 0.5s;
-  }
-  .hero-img:hover { transform: translateY(-6px) scale(1.01); }
+    .nav-hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
 
-  .hero-floating-tag {
-    position: absolute; bottom: 40px; left: -20px;
-    background: var(--brown-deep); color: var(--cream);
-    padding: 0.8rem 1.2rem; border-radius: 4px;
-    font-size: 0.82rem; font-weight: 600;
-    z-index: 2; box-shadow: 0 8px 24px var(--shadow-deep);
-    animation: floatTag 3s ease-in-out infinite;
-  }
-  @keyframes floatTag {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
+    .nav-hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--brown-deep);
+      transition: all 0.3s;
+      display: block;
+    }
 
-  @media(max-width:768px){
-    #home { grid-template-columns: 1fr; padding-top: 100px; text-align: center; }
-    .hero-tagline { max-width: 100%; }
-    .hero-btns { justify-content: center; }
-    .hero-img-wrap { order: -1; }
-    .hero-img { height: 320px; }
-    .hero-floating-tag { left: 0; bottom: 20px; }
-  }
+    @media(max-width:768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--warm-white);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--cream-dark);
+      }
 
-  /* ─── STATS ─── */
-  .stats-strip {
-    background: var(--charcoal);
-    padding: 3rem 5vw;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    text-align: center;
-  }
-  .stat-item { border-right: 1px solid rgba(255,255,255,0.08); }
-  .stat-item:last-child { border-right: none; }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem; font-weight: 900;
-    color: var(--gold-light);
-    line-height: 1;
-  }
-  .stat-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-top: 0.4rem; font-weight: 500; }
+      .nav-links.open {
+        display: flex;
+      }
 
-  @media(max-width:600px){ .stats-strip { grid-template-columns: repeat(2,1fr); } .stat-item { border-right: none; } }
+      .nav-hamburger {
+        display: flex;
+      }
+    }
 
-  /* ─── SECTION HEADER ─── */
-  .section-header { text-align: center; margin-bottom: 3.5rem; }
-  .section-eyebrow {
-    display: inline-flex; align-items: center; gap: 0.7rem;
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 0.8rem;
-  }
-  .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--gold); }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    color: var(--brown-deep);
-    line-height: 1.15;
-  }
-  .section-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem; color: var(--text-muted);
-    margin-top: 0.7rem; max-width: 560px; margin-inline: auto;
-  }
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 100px 5vw 60px;
+      gap: 4rem;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 60%, var(--cream-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
 
-  /* ─── PRODUCTS ─── */
-  #shop { padding: 6rem 5vw; background: var(--warm-white); }
+    #home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201, 151, 42, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
 
-  .product-card {
-    background: #fff;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 2px 16px var(--shadow-warm);
-    transition: transform 0.35s, box-shadow 0.35s;
-    position: relative;
-  }
-  .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px var(--shadow-deep); }
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
 
-  .product-img-wrap { position: relative; overflow: hidden; height: 250px; }
-  .product-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-  .product-card:hover .product-img-wrap img { transform: scale(1.07); }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      line-height: 1.05;
+      color: var(--brown-deep);
+      margin-bottom: 1.5rem;
+    }
 
-  .product-badge {
-    position: absolute; top: 14px; left: 14px;
-    padding: 0.3rem 0.8rem; border-radius: 2px;
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  }
-  .badge-bestseller { background: var(--brown-deep); color: var(--gold-light); }
-  .badge-new { background: #2d6a4f; color: #d8f3dc; }
-  .badge-sale { background: var(--gold); color: var(--brown-deep); }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
 
-  .product-body { padding: 1.4rem; }
-  .product-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem; font-weight: 600;
-    color: var(--brown-deep); margin-bottom: 0.5rem;
-  }
-  .product-specs { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.6; }
-  .product-specs span { margin-right: 0.8rem; }
-  .product-specs span::before { content: '· '; }
-  .product-specs span:first-child::before { content: ''; }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+    }
 
-  .stars { color: var(--gold); font-size: 0.85rem; }
-  .review-count { font-size: 0.75rem; color: var(--text-muted); margin-left: 0.4rem; }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
 
-  .product-pricing { display: flex; align-items: center; gap: 0.8rem; margin: 0.8rem 0 1rem; }
-  .price-now {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; font-weight: 700; color: var(--brown-deep);
-  }
-  .price-was { font-size: 0.9rem; color: var(--text-muted); text-decoration: line-through; }
+    .btn-primary {
+      padding: 0.9rem 2.2rem;
+      background: var(--brown-deep);
+      color: var(--cream);
+      border: none;
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      display: inline-block;
+    }
 
-  .btn-order {
-    width: 100%; padding: 0.8rem;
-    background: var(--cream);
-    color: var(--brown-deep);
-    border: 1.5px solid var(--brown-light);
-    border-radius: 2px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.25s;
-  }
-  .btn-order:hover { background: var(--brown-deep); color: var(--cream); border-color: var(--brown-deep); }
+    .btn-primary:hover {
+      background: var(--gold);
+      color: var(--brown-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 151, 42, 0.35);
+    }
 
-  /* ─── WHY CHOOSE US ─── */
-  #about { padding: 6rem 5vw; background: var(--cream); }
+    .btn-outline {
+      padding: 0.9rem 2.2rem;
+      background: transparent;
+      color: var(--brown-deep);
+      border: 1.5px solid var(--brown-deep);
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+      display: inline-block;
+    }
 
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
+    .btn-outline:hover {
+      background: var(--brown-deep);
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
 
-  .feature-card {
-    background: var(--warm-white);
-    padding: 2rem;
-    border-radius: 4px;
-    border-top: 3px solid transparent;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .feature-card::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 0;
-    background: linear-gradient(to top, rgba(201,151,42,0.05), transparent);
-    transition: height 0.4s;
-  }
-  .feature-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 36px var(--shadow-warm); }
-  .feature-card:hover::after { height: 100%; }
+    .hero-price-badge {
+      display: inline-flex;
+      flex-direction: column;
+      background: var(--gold-pale);
+      border-left: 3px solid var(--gold);
+      padding: 0.8rem 1.2rem;
+      border-radius: 0 4px 4px 0;
+    }
 
-  .feature-icon {
-    font-size: 2rem; margin-bottom: 1rem;
-    width: 56px; height: 56px;
-    background: var(--gold-pale);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.3s;
-  }
-  .feature-card:hover .feature-icon { background: var(--gold); }
-  .feature-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; font-weight: 600;
-    color: var(--brown-deep); margin-bottom: 0.5rem;
-  }
-  .feature-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+    .hero-price-badge small {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brown-mid);
+      font-weight: 600;
+    }
 
-  /* ─── GALLERY ─── */
-  #gallery { padding: 6rem 5vw; background: var(--warm-white); }
+    .hero-price-badge strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--brown-deep);
+    }
 
-  .gallery-grid {
-    columns: 3 280px;
-    column-gap: 1rem;
-  }
-  .gallery-item {
-    break-inside: avoid;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    border-radius: 4px;
-    position: relative;
-    cursor: pointer;
-  }
-  .gallery-item img {
-    width: 100%; display: block;
-    transition: transform 0.5s, filter 0.4s;
-  }
-  .gallery-item:hover img { transform: scale(1.06); filter: brightness(0.85); }
-  .gallery-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(44,26,14,0.6), transparent);
-    opacity: 0; transition: opacity 0.4s;
-    display: flex; align-items: flex-end; padding: 1.2rem;
-  }
-  .gallery-item:hover .gallery-overlay { opacity: 1; }
-  .gallery-overlay span { color: var(--cream); font-size: 0.85rem; font-weight: 500; }
+    .hero-img-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  /* ─── TESTIMONIALS ─── */
-  .testimonials { padding: 6rem 5vw; background: var(--charcoal); }
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      width: 85%;
+      height: 85%;
+      background: linear-gradient(135deg, var(--gold-pale), var(--cream-dark));
+      border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+      z-index: 0;
+      animation: blobFloat 8s ease-in-out infinite;
+    }
 
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
+    @keyframes blobFloat {
 
-  .review-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 4px; padding: 2rem;
-    position: relative;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-  }
-  .review-card:hover { transform: translateY(-4px); border-color: rgba(201,151,42,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
-  .review-card::before {
-    content: '\201C';
-    position: absolute; top: 1rem; right: 1.5rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem; color: rgba(201,151,42,0.15);
-    line-height: 1;
-  }
-  .review-stars { color: var(--gold-light); font-size: 0.9rem; margin-bottom: 1rem; }
-  .review-text { color: rgba(255,255,255,0.75); font-size: 0.92rem; line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
-  .reviewer-info { display: flex; align-items: center; gap: 0.8rem; }
-  .reviewer-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--brown-mid), var(--gold));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; font-weight: 700;
-  }
-  .reviewer-name { font-weight: 600; color: var(--cream); font-size: 0.9rem; }
-  .reviewer-city { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
-  .verified-badge {
-    margin-left: auto;
-    font-size: 0.7rem; color: #52c41a;
-    background: rgba(82,196,26,0.1); border: 1px solid rgba(82,196,26,0.3);
-    padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.06em; font-weight: 600;
-  }
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
 
-  /* ─── CONTACT ─── */
-  #contact { padding: 6rem 5vw; background: var(--cream); }
+      50% {
+        transform: scale(1.05) rotate(3deg);
+      }
+    }
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 4rem; align-items: start;
-  }
+    .hero-img {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 520px;
+      border-radius: 4px;
+      box-shadow: 0 24px 80px var(--shadow-deep);
+      object-fit: cover;
+      height: 520px;
+      transition: transform 0.5s;
+    }
 
-  .contact-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem; color: var(--brown-deep); margin-bottom: 1.5rem;
-  }
-  .contact-detail {
-    display: flex; gap: 1rem; align-items: flex-start;
-    margin-bottom: 1.2rem;
-  }
-  .contact-icon {
-    width: 40px; height: 40px; background: var(--warm-white);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
-    box-shadow: 0 2px 8px var(--shadow-warm);
-  }
-  .contact-detail-text strong { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.2rem; }
-  .contact-detail-text span, .contact-detail-text a { color: var(--brown-deep); font-size: 0.92rem; text-decoration: none; font-weight: 500; display: block; }
-  .contact-detail-text a:hover { color: var(--gold); }
+    .hero-img:hover {
+      transform: translateY(-6px) scale(1.01);
+    }
 
-  .social-row { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
-  .social-btn {
-    padding: 0.6rem 1.2rem; border-radius: 2px;
-    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
-    text-decoration: none; cursor: pointer; border: none;
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px var(--shadow-warm); }
-  .social-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366); color: #fff; }
-  .social-fb { background: #1877f2; color: #fff; }
-  .social-wa { background: #25d366; color: #fff; }
+    .hero-floating-tag {
+      position: absolute;
+      bottom: 40px;
+      left: -20px;
+      background: var(--brown-deep);
+      color: var(--cream);
+      padding: 0.8rem 1.2rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      z-index: 2;
+      box-shadow: 0 8px 24px var(--shadow-deep);
+      animation: floatTag 3s ease-in-out infinite;
+    }
 
-  .order-form {
-    background: var(--warm-white);
-    padding: 2.5rem;
-    border-radius: 4px;
-    box-shadow: 0 4px 24px var(--shadow-warm);
-  }
-  .order-form h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; color: var(--brown-deep); margin-bottom: 1.5rem;
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-group { margin-bottom: 1.2rem; }
-  .form-group label {
-    display: block; font-size: 0.78rem; font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 0.4rem;
-  }
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%; padding: 0.8rem 1rem;
-    background: var(--cream);
-    border: 1.5px solid var(--cream-dark);
-    border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--brown-deep);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,151,42,0.12);
-  }
-  .form-group textarea { resize: vertical; min-height: 100px; }
+    @keyframes floatTag {
 
-  @media(max-width:768px){ .contact-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
 
-  /* ─── MAP ─── */
-  .map-section { height: 340px; position: relative; overflow: hidden; }
-  .map-placeholder {
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg, var(--cream-dark), var(--cream));
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
-  }
-  .map-pin { font-size: 3rem; animation: pinBounce 1.5s ease-in-out infinite; }
-  @keyframes pinBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .map-address { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--brown-deep); text-align: center; }
-  .map-link {
-    padding: 0.7rem 1.8rem;
-    background: var(--brown-deep); color: var(--cream);
-    border-radius: 2px; text-decoration: none;
-    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
-    transition: background 0.2s;
-  }
-  .map-link:hover { background: var(--gold); color: var(--brown-deep); }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--charcoal);
-    padding: 4rem 5vw 2rem;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr 1fr;
-    gap: 3rem; margin-bottom: 3rem;
-  }
-  .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
-  .footer-col h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem; color: var(--gold-light);
-    margin-bottom: 1rem; font-weight: 600;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 0.6rem; }
-  .footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.86rem; transition: color 0.2s; }
-  .footer-col ul li a:hover { color: var(--gold-light); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 2rem; text-align: center;
-    color: rgba(255,255,255,0.3); font-size: 0.8rem;
-  }
-  @media(max-width:768px){ .footer-grid { grid-template-columns: 1fr 1fr; } }
-  @media(max-width:480px){ .footer-grid { grid-template-columns: 1fr; } }
+    @media(max-width:768px) {
+      #home {
+        grid-template-columns: 1fr;
+        padding-top: 100px;
+        text-align: center;
+      }
 
-  /* ─── FLOATING BUTTON ─── */
-  .floating-call {
-    position: fixed; bottom: 28px; right: 28px; z-index: 999;
-    width: 58px; height: 58px;
-    background: var(--brown-deep);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none; font-size: 1.5rem;
-    box-shadow: 0 8px 28px rgba(44,26,14,0.35);
-    transition: transform 0.25s, background 0.25s;
-    animation: pulseCall 2.5s ease-in-out infinite;
-  }
-  .floating-call:hover { transform: scale(1.12); background: var(--gold); }
-  @keyframes pulseCall {
-    0%,100% { box-shadow: 0 8px 28px rgba(44,26,14,0.35), 0 0 0 0 rgba(201,151,42,0.4); }
-    50% { box-shadow: 0 8px 28px rgba(44,26,14,0.35), 0 0 0 14px rgba(201,151,42,0); }
-  }
+      .hero-tagline {
+        max-width: 100%;
+      }
 
-  /* ─── TOAST ─── */
-  .toast {
-    position: fixed; bottom: 100px; right: 28px; z-index: 9999;
-    background: #2d6a4f; color: #fff;
-    padding: 1rem 1.5rem; border-radius: 4px;
-    font-size: 0.9rem; font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    transform: translateY(20px); opacity: 0;
-    transition: all 0.4s;
-    pointer-events: none;
-  }
-  .toast.show { transform: translateY(0); opacity: 1; }
+      .hero-btns {
+        justify-content: center;
+      }
 
-  /* ─── REVEAL ANIMATION ─── */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s, transform 0.6s; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-</style>
+      .hero-img-wrap {
+        order: -1;
+      }
+
+      .hero-img {
+        height: 320px;
+      }
+
+      .hero-floating-tag {
+        left: 0;
+        bottom: 20px;
+      }
+    }
+
+    /* ─── STATS ─── */
+    .stats-strip {
+      background: var(--charcoal);
+      padding: 3rem 5vw;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item {
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+
+    @media(max-width:600px) {
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-item {
+        border-right: none;
+      }
+    }
+
+    /* ─── SECTION HEADER ─── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-eyebrow::before,
+    .section-eyebrow::after {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--brown-deep);
+      line-height: 1.15;
+    }
+
+    .section-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-top: 0.7rem;
+      max-width: 560px;
+      margin-inline: auto;
+    }
+
+    /* ─── PRODUCTS ─── */
+    #shop {
+      padding: 6rem 5vw;
+      background: var(--warm-white);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px var(--shadow-warm);
+      transition: transform 0.35s, box-shadow 0.35s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px var(--shadow-deep);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 250px;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.07);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-bestseller {
+      background: var(--brown-deep);
+      color: var(--gold-light);
+    }
+
+    .badge-new {
+      background: #2d6a4f;
+      color: #d8f3dc;
+    }
+
+    .badge-sale {
+      background: var(--gold);
+      color: var(--brown-deep);
+    }
+
+    .product-body {
+      padding: 1.4rem;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--brown-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-specs {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .product-specs span {
+      margin-right: 0.8rem;
+    }
+
+    .product-specs span::before {
+      content: '· ';
+    }
+
+    .product-specs span:first-child::before {
+      content: '';
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+
+    .review-count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-left: 0.4rem;
+    }
+
+    .product-pricing {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 0.8rem 0 1rem;
+    }
+
+    .price-now {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown-deep);
+    }
+
+    .price-was {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .btn-order {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--cream);
+      color: var(--brown-deep);
+      border: 1.5px solid var(--brown-light);
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .btn-order:hover {
+      background: var(--brown-deep);
+      color: var(--cream);
+      border-color: var(--brown-deep);
+    }
+
+    /* ─── WHY CHOOSE US ─── */
+    #about {
+      padding: 6rem 5vw;
+      background: var(--cream);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--warm-white);
+      padding: 2rem;
+      border-radius: 4px;
+      border-top: 3px solid transparent;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(to top, rgba(201, 151, 42, 0.05), transparent);
+      transition: height 0.4s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px var(--shadow-warm);
+    }
+
+    .feature-card:hover::after {
+      height: 100%;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      width: 56px;
+      height: 56px;
+      background: var(--gold-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .feature-card:hover .feature-icon {
+      background: var(--gold);
+    }
+
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--brown-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── GALLERY ─── */
+    #gallery {
+      padding: 6rem 5vw;
+      background: var(--warm-white);
+    }
+
+    .gallery-grid {
+      columns: 3 280px;
+      column-gap: 1rem;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border-radius: 4px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s, filter 0.4s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.85);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44, 26, 14, 0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay span {
+      color: var(--cream);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      padding: 6rem 5vw;
+      background: var(--charcoal);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .review-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201, 151, 42, 0.4);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .review-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: rgba(201, 151, 42, 0.15);
+      line-height: 1;
+    }
+
+    .review-stars {
+      color: var(--gold-light);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-text {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .reviewer-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brown-mid), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .reviewer-name {
+      font-weight: 600;
+      color: var(--cream);
+      font-size: 0.9rem;
+    }
+
+    .reviewer-city {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .verified-badge {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: #52c41a;
+      background: rgba(82, 196, 26, 0.1);
+      border: 1px solid rgba(82, 196, 26, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      padding: 6rem 5vw;
+      background: var(--cream);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--brown-deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--warm-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px var(--shadow-warm);
+    }
+
+    .contact-detail-text strong {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail-text span,
+    .contact-detail-text a {
+      color: var(--brown-deep);
+      font-size: 0.92rem;
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+    }
+
+    .contact-detail-text a:hover {
+      color: var(--gold);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px var(--shadow-warm);
+    }
+
+    .social-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366);
+      color: #fff;
+    }
+
+    .social-fb {
+      background: #1877f2;
+      color: #fff;
+    }
+
+    .social-wa {
+      background: #25d366;
+      color: #fff;
+    }
+
+    .order-form {
+      background: var(--warm-white);
+      padding: 2.5rem;
+      border-radius: 4px;
+      box-shadow: 0 4px 24px var(--shadow-warm);
+    }
+
+    .order-form h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--brown-deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: var(--cream);
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--brown-deep);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201, 151, 42, 0.12);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    @media(max-width:768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── MAP ─── */
+    .map-section {
+      height: 340px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--cream-dark), var(--cream));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .map-pin {
+      font-size: 3rem;
+      animation: pinBounce 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pinBounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .map-address {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--brown-deep);
+      text-align: center;
+    }
+
+    .map-link {
+      padding: 0.7rem 1.8rem;
+      background: var(--brown-deep);
+      color: var(--cream);
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: background 0.2s;
+    }
+
+    .map-link:hover {
+      background: var(--gold);
+      color: var(--brown-deep);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--charcoal);
+      padding: 4rem 5vw 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-top: 1rem;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      font-size: 0.86rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 2rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.8rem;
+    }
+
+    @media(max-width:768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── FLOATING BUTTON ─── */
+    .floating-call {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: var(--brown-deep);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 28px rgba(44, 26, 14, 0.35);
+      transition: transform 0.25s, background 0.25s;
+      animation: pulseCall 2.5s ease-in-out infinite;
+    }
+
+    .floating-call:hover {
+      transform: scale(1.12);
+      background: var(--gold);
+    }
+
+    @keyframes pulseCall {
+
+      0%,
+      100% {
+        box-shadow: 0 8px 28px rgba(44, 26, 14, 0.35), 0 0 0 0 rgba(201, 151, 42, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 8px 28px rgba(44, 26, 14, 0.35), 0 0 0 14px rgba(201, 151, 42, 0);
+      }
+    }
+
+    /* ─── TOAST ─── */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      right: 28px;
+      z-index: 9999;
+      background: #2d6a4f;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <a href="#home" class="nav-logo">Furniture <span>World</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#shop">Shop</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#contact" class="btn-nav">Order Now</a></li>
-  </ul>
-  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#home" class="nav-logo">Furniture <span>World</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="btn-nav">Order Now</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Crafted with Passion</div>
+      <h1 class="hero-title">Where Every Room Tells a <em>Story</em></h1>
+      <p class="hero-tagline">Handcrafted furniture blending timeless design with modern comfort — built to last
+        generations and elevate everyday living.</p>
+      <div class="hero-btns">
+        <a href="#shop" class="btn-primary">Explore Collection</a>
+        <a href="#contact" class="btn-outline">Get a Quote</a>
+      </div>
+      <div class="hero-price-badge">
+        <small>Starting from</small>
+        <strong>₹12,999</strong>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <img class="hero-img" src="furniture_world_logo.png" alt="Premium Sofa" />
+      <div class="hero-floating-tag">🏆 #1 Trusted Furniture Brand</div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">12K+</div>
+      <div class="stat-label">Happy Customers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">450+</div>
+      <div class="stat-label">Products Available</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">20+ Yrs</div>
+      <div class="stat-label">In Business</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.9 ★</div>
+      <div class="stat-label">Average Rating</div>
+    </div>
   </div>
-</nav>
 
-<!-- HERO -->
-<section id="home">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Crafted with Passion</div>
-    <h1 class="hero-title">Where Every Room Tells a <em>Story</em></h1>
-    <p class="hero-tagline">Handcrafted furniture blending timeless design with modern comfort — built to last generations and elevate everyday living.</p>
-    <div class="hero-btns">
-      <a href="#shop" class="btn-primary">Explore Collection</a>
-      <a href="#contact" class="btn-outline">Get a Quote</a>
+  <!-- PRODUCTS -->
+  <section id="shop">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Our Collection</div>
+      <h2 class="section-title">Crafted to Perfection</h2>
+      <p class="section-subtitle">Each piece is carefully selected for quality, durability, and timeless aesthetics.</p>
     </div>
-    <div class="hero-price-badge">
-      <small>Starting from</small>
-      <strong>₹12,999</strong>
-    </div>
-  </div>
-  <div class="hero-img-wrap">
-    <img class="hero-img" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80" alt="Premium Sofa" />
-    <div class="hero-floating-tag">🏆 #1 Trusted Furniture Brand Since @2000</div>
-  </div>
-</section>
+    <div class="products-grid">
 
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stat-item">
-    <div class="stat-num">12K+</div>
-    <div class="stat-label">Happy Customers</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">450+</div>
-    <div class="stat-label">Products Available</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">20+ Yrs</div>
-    <div class="stat-label">In Business</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">4.9 ★</div>
-    <div class="stat-label">Average Rating</div>
-  </div>
-</div>
+      <div class="product-card reveal">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-bestseller">Bestseller</span>
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=75" alt="Royal Teak Sofa" />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Royal Teak 3-Seater Sofa</div>
+          <div class="product-specs">
+            <span>Sheesham Wood</span><span>210×85 cm</span><span>Living Room</span>
+          </div>
+          <div><span class="stars">★★★★★</span><span class="review-count">(148 reviews)</span></div>
+          <div class="product-pricing">
+            <span class="price-now">₹42,999</span>
+            <span class="price-was">₹55,000</span>
+          </div>
+          <button class="btn-order" onclick="scrollToContact()">Order Now</button>
+        </div>
+      </div>
 
-<!-- PRODUCTS -->
-<section id="shop">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">Our Collection</div>
-    <h2 class="section-title">Crafted to Perfection</h2>
-    <p class="section-subtitle">Each piece is carefully selected for quality, durability, and timeless aesthetics.</p>
-  </div>
-  <div class="products-grid">
+      <div class="product-card reveal">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-new">New</span>
+          <img src="https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=500&q=75"
+            alt="Walnut Dining Table" />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Walnut Executive Dining Table</div>
+          <div class="product-specs">
+            <span>Solid Walnut</span><span>180×90 cm</span><span>Dining</span>
+          </div>
+          <div><span class="stars">★★★★★</span><span class="review-count">(92 reviews)</span></div>
+          <div class="product-pricing">
+            <span class="price-now">₹38,500</span>
+            <span class="price-was">₹48,000</span>
+          </div>
+          <button class="btn-order" onclick="scrollToContact()">Order Now</button>
+        </div>
+      </div>
 
-    <div class="product-card reveal">
-      <div class="product-img-wrap">
-        <span class="product-badge badge-bestseller">Bestseller</span>
-        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=75" alt="Royal Teak Sofa" />
-      </div>
-      <div class="product-body">
-        <div class="product-name">Royal Teak 3-Seater Sofa</div>
-        <div class="product-specs">
-          <span>Sheesham Wood</span><span>210×85 cm</span><span>Living Room</span>
+      <div class="product-card reveal">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-sale">Sale 20%</span>
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&q=75" alt="King Bed Frame" />
         </div>
-        <div><span class="stars">★★★★★</span><span class="review-count">(148 reviews)</span></div>
-        <div class="product-pricing">
-          <span class="price-now">₹42,999</span>
-          <span class="price-was">₹55,000</span>
+        <div class="product-body">
+          <div class="product-name">Empress King Bed Frame</div>
+          <div class="product-specs">
+            <span>Mango Wood</span><span>King Size</span><span>Bedroom</span>
+          </div>
+          <div><span class="stars">★★★★☆</span><span class="review-count">(74 reviews)</span></div>
+          <div class="product-pricing">
+            <span class="price-now">₹31,999</span>
+            <span class="price-was">₹39,999</span>
+          </div>
+          <button class="btn-order" onclick="scrollToContact()">Order Now</button>
         </div>
-        <button class="btn-order" onclick="scrollToContact()">Order Now</button>
       </div>
-    </div>
 
-    <div class="product-card reveal">
-      <div class="product-img-wrap">
-        <span class="product-badge badge-new">New</span>
-        <img src="https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=500&q=75" alt="Walnut Dining Table" />
-      </div>
-      <div class="product-body">
-        <div class="product-name">Walnut Executive Dining Table</div>
-        <div class="product-specs">
-          <span>Solid Walnut</span><span>180×90 cm</span><span>Dining</span>
+      <div class="product-card reveal">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-bestseller">Bestseller</span>
+          <img src="https://images.unsplash.com/photo-1617104551722-3b2d51366cef?w=500&q=75" alt="Bookshelf" />
         </div>
-        <div><span class="stars">★★★★★</span><span class="review-count">(92 reviews)</span></div>
-        <div class="product-pricing">
-          <span class="price-now">₹38,500</span>
-          <span class="price-was">₹48,000</span>
+        <div class="product-body">
+          <div class="product-name">Heritage Oak Bookshelf</div>
+          <div class="product-specs">
+            <span>Oak Wood</span><span>5-Tier</span><span>Study Room</span>
+          </div>
+          <div><span class="stars">★★★★★</span><span class="review-count">(203 reviews)</span></div>
+          <div class="product-pricing">
+            <span class="price-now">₹18,499</span>
+            <span class="price-was">₹24,000</span>
+          </div>
+          <button class="btn-order" onclick="scrollToContact()">Order Now</button>
         </div>
-        <button class="btn-order" onclick="scrollToContact()">Order Now</button>
       </div>
-    </div>
 
-    <div class="product-card reveal">
-      <div class="product-img-wrap">
-        <span class="product-badge badge-sale">Sale 20%</span>
-        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&q=75" alt="King Bed Frame" />
-      </div>
-      <div class="product-body">
-        <div class="product-name">Empress King Bed Frame</div>
-        <div class="product-specs">
-          <span>Mango Wood</span><span>King Size</span><span>Bedroom</span>
+      <div class="product-card reveal">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-new">New</span>
+          <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&q=75" alt="Lounge Chair" />
         </div>
-        <div><span class="stars">★★★★☆</span><span class="review-count">(74 reviews)</span></div>
-        <div class="product-pricing">
-          <span class="price-now">₹31,999</span>
-          <span class="price-was">₹39,999</span>
+        <div class="product-body">
+          <div class="product-name">Luxe Recline Lounge Chair</div>
+          <div class="product-specs">
+            <span>Teak + Leather</span><span>Single Seat</span><span>Living Room</span>
+          </div>
+          <div><span class="stars">★★★★★</span><span class="review-count">(56 reviews)</span></div>
+          <div class="product-pricing">
+            <span class="price-now">₹22,999</span>
+            <span class="price-was">₹28,000</span>
+          </div>
+          <button class="btn-order" onclick="scrollToContact()">Order Now</button>
         </div>
-        <button class="btn-order" onclick="scrollToContact()">Order Now</button>
       </div>
-    </div>
 
-    <div class="product-card reveal">
-      <div class="product-img-wrap">
-        <span class="product-badge badge-bestseller">Bestseller</span>
-        <img src="https://images.unsplash.com/photo-1617104551722-3b2d51366cef?w=500&q=75" alt="Bookshelf" />
-      </div>
-      <div class="product-body">
-        <div class="product-name">Heritage Oak Bookshelf</div>
-        <div class="product-specs">
-          <span>Oak Wood</span><span>5-Tier</span><span>Study Room</span>
+      <div class="product-card reveal">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-sale">Sale 15%</span>
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&q=75" alt="Wardrobe" />
         </div>
-        <div><span class="stars">★★★★★</span><span class="review-count">(203 reviews)</span></div>
-        <div class="product-pricing">
-          <span class="price-now">₹18,499</span>
-          <span class="price-was">₹24,000</span>
+        <div class="product-body">
+          <div class="product-name">Grand Mahogany Wardrobe</div>
+          <div class="product-specs">
+            <span>Mahogany</span><span>4-Door</span><span>Bedroom</span>
+          </div>
+          <div><span class="stars">★★★★☆</span><span class="review-count">(88 reviews)</span></div>
+          <div class="product-pricing">
+            <span class="price-now">₹56,500</span>
+            <span class="price-was">₹66,500</span>
+          </div>
+          <button class="btn-order" onclick="scrollToContact()">Order Now</button>
         </div>
-        <button class="btn-order" onclick="scrollToContact()">Order Now</button>
       </div>
-    </div>
 
-    <div class="product-card reveal">
-      <div class="product-img-wrap">
-        <span class="product-badge badge-new">New</span>
-        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&q=75" alt="Lounge Chair" />
-      </div>
-      <div class="product-body">
-        <div class="product-name">Luxe Recline Lounge Chair</div>
-        <div class="product-specs">
-          <span>Teak + Leather</span><span>Single Seat</span><span>Living Room</span>
-        </div>
-        <div><span class="stars">★★★★★</span><span class="review-count">(56 reviews)</span></div>
-        <div class="product-pricing">
-          <span class="price-now">₹22,999</span>
-          <span class="price-was">₹28,000</span>
-        </div>
-        <button class="btn-order" onclick="scrollToContact()">Order Now</button>
-      </div>
     </div>
+  </section>
 
-    <div class="product-card reveal">
-      <div class="product-img-wrap">
-        <span class="product-badge badge-sale">Sale 15%</span>
-        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&q=75" alt="Wardrobe" />
+  <!-- WHY CHOOSE US -->
+  <section id="about">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Why Choose Us</div>
+      <h2 class="section-title">The Furniture World Promise</h2>
+      <p class="section-subtitle">We go beyond furniture — we deliver an experience you'll cherish for years.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🪵</div>
+        <div class="feature-title">Premium Wood Quality</div>
+        <p class="feature-desc">We source only the finest seasoned hardwoods — teak, sheesham, walnut, and oak — for
+          lasting beauty and strength.</p>
       </div>
-      <div class="product-body">
-        <div class="product-name">Grand Mahogany Wardrobe</div>
-        <div class="product-specs">
-          <span>Mahogany</span><span>4-Door</span><span>Bedroom</span>
-        </div>
-        <div><span class="stars">★★★★☆</span><span class="review-count">(88 reviews)</span></div>
-        <div class="product-pricing">
-          <span class="price-now">₹56,500</span>
-          <span class="price-was">₹66,500</span>
-        </div>
-        <button class="btn-order" onclick="scrollToContact()">Order Now</button>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🚚</div>
+        <div class="feature-title">Home Delivery Available</div>
+        <p class="feature-desc">Complimentary delivery and professional installation included on all orders above
+          ₹20,000 within city limits.</p>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- WHY CHOOSE US -->
-<section id="about">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">Why Choose Us</div>
-    <h2 class="section-title">The Furniture World Promise</h2>
-    <p class="section-subtitle">We go beyond furniture — we deliver an experience you'll cherish for years.</p>
-  </div>
-  <div class="features-grid">
-    <div class="feature-card reveal">
-      <div class="feature-icon">🪵</div>
-      <div class="feature-title">Premium Wood Quality</div>
-      <p class="feature-desc">We source only the finest seasoned hardwoods — teak, sheesham, walnut, and oak — for lasting beauty and strength.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🚚</div>
-      <div class="feature-title">Home Delivery Available</div>
-      <p class="feature-desc">Complimentary delivery and professional installation included on all orders above ₹20,000 within city limits.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🛡️</div>
-      <div class="feature-title">5-Year Warranty</div>
-      <p class="feature-desc">Every piece comes with a comprehensive 5-year structural warranty. We stand behind every joint and finish.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">✏️</div>
-      <div class="feature-title">Custom Orders</div>
-      <p class="feature-desc">Design your dream furniture from scratch. We craft bespoke pieces tailored to your exact dimensions and style.</p>
-    </div>
-    <!-- <div class="feature-card reveal">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-title">5-Year Warranty</div>
+        <p class="feature-desc">Every piece comes with a comprehensive 5-year structural warranty. We stand behind every
+          joint and finish.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">✏️</div>
+        <div class="feature-title">Custom Orders</div>
+        <p class="feature-desc">Design your dream furniture from scratch. We craft bespoke pieces tailored to your exact
+          dimensions and style.</p>
+      </div>
+      <!-- <div class="feature-card reveal">
       <div class="feature-icon">💳</div>
       <div class="feature-title">Easy EMI Options</div>
       <p class="feature-desc">0% interest EMI available on orders above ₹15,000 through leading banks and UPI apps. No hidden charges.</p>
     </div> -->
-    <div class="feature-card reveal">
-      <div class="feature-icon">↩️</div>
-      <div class="feature-title">Hassle-Free Returns</div>
-      <p class="feature-desc">Not completely satisfied? We offer a 7-day easy return policy with full refund or exchange — no questions asked.</p>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">Photo Gallery</div>
-    <h2 class="section-title">Rooms That Inspire</h2>
-    <p class="section-subtitle">See our furniture come to life in real homes, styled with warmth and personality.</p>
-  </div>
-  <div class="gallery-grid reveal">
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=75" alt="Living Room" />
-      <div class="gallery-overlay"><span>Cozy Living Room</span></div>
-    </div>
-    <div class="gallery-item">
-      <img src="02.jpeg" alt="Bedroom" />
-      <div class="gallery-overlay"><span>Master Bedroom</span></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&q=75" alt="Reading Corner" />
-      <div class="gallery-overlay"><span>Reading Nook</span></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=75" alt="Dining" />
-      <div class="gallery-overlay"><span>Dining Space</span></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=500&q=75" alt="Study Room" />
-      <div class="gallery-overlay"><span>Study Room</span></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=75" alt="Lounge" />
-      <div class="gallery-overlay"><span>Premium Lounge</span></div>
-    </div>
-    <div class="gallery-item">
-      <img src="01.jpeg" alt="Bedroom 2" />
-      <div class="gallery-overlay"><span>Serene Bedroom</span></div>
-    </div>
-    <div class="gallery-item">
-      <img src="03.jpeg" alt="Modern Kitchen" />
-      <div class="gallery-overlay"><span>Modern Kitchen</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="section-header reveal">
-    <div class="section-eyebrow" style="color:var(--gold-light)">Customer Stories</div>
-    <h2 class="section-title" style="color:var(--cream)">What Our Clients Say</h2>
-    <p class="section-subtitle" style="color:rgba(255,255,255,0.5)">Thousands of families trust Furniture World to make their houses feel like home.</p>
-  </div>
-  <div class="reviews-grid">
-
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"The sheesham wood sofa we ordered is absolutely gorgeous. The craftsmanship is impeccable — every detail feels premium. Delivery was on time and the team was incredibly professional."</p>
-      <div class="reviewer-info">
-        <div class="reviewer-avatar">R</div>
-        <div>
-          <div class="reviewer-name">Rahul Mehta</div>
-          <div class="reviewer-city">Mumbai, Maharashtra</div>
-        </div>
-        <span class="verified-badge">✓ Verified</span>
+      <div class="feature-card reveal">
+        <div class="feature-icon">↩️</div>
+        <div class="feature-title">Hassle-Free Returns</div>
+        <p class="feature-desc">Not completely satisfied? We offer a 7-day easy return policy with full refund or
+          exchange — no questions asked.</p>
       </div>
     </div>
+  </section>
 
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"We furnished our entire home from Furniture World and couldn't be happier. The custom wardrobe fits perfectly and the quality is miles ahead of what we'd seen elsewhere at twice the price."</p>
-      <div class="reviewer-info">
-        <div class="reviewer-avatar">P</div>
-        <div>
-          <div class="reviewer-name">Priya Sharma</div>
-          <div class="reviewer-city">Pune, Maharashtra</div>
-        </div>
-        <span class="verified-badge">✓ Verified</span>
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Photo Gallery</div>
+      <h2 class="section-title">Rooms That Inspire</h2>
+      <p class="section-subtitle">See our furniture come to life in real homes, styled with warmth and personality.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_1.jpeg" alt="Living Room" />
+        <div class="gallery-overlay"><span>Cozy Living Room</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="02.jpeg" alt="Bedroom" />
+        <div class="gallery-overlay"><span>Master Bedroom</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_10.jpeg" alt="Reading Corner" />
+        <div class="gallery-overlay"><span>Reading Nook</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_2.jpeg" alt="Dining" />
+        <div class="gallery-overlay"><span>Dining Space</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_3.jpeg" alt="Study Room" />
+        <div class="gallery-overlay"><span>Premium Room</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_4.jpeg" alt="Lounge" />
+        <div class="gallery-overlay"><span>Premium Lounge</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_5.jpeg" alt="Bedroom 2" />
+        <div class="gallery-overlay"><span>Serene Bedroom</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_6.jpeg" alt="Bedroom 2" />
+        <div class="gallery-overlay"><span>Serene Bedroom</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_7.jpeg" alt="Bedroom 2" />
+        <div class="gallery-overlay"><span>Serene Bedroom</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="Storage Bed  Diwaan  6 × 6.5_8.jpeg" alt="Bedroom 2" />
+        <div class="gallery-overlay"><span>Serene Bedroom</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="03.jpeg" alt="Modern Kitchen" />
+        <div class="gallery-overlay"><span>Modern Kitchen</span></div>
       </div>
     </div>
+  </section>
 
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Exceptional experience from start to finish. The team helped me choose the right pieces for my space, and the EMI option made it stress-free. I've already recommended Furniture World to six friends!"</p>
-      <div class="reviewer-info">
-        <div class="reviewer-avatar">A</div>
-        <div>
-          <div class="reviewer-name">Arjun Nair</div>
-          <div class="reviewer-city">Bangalore, Karnataka</div>
-        </div>
-        <span class="verified-badge">✓ Verified</span>
-      </div>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header reveal">
+      <div class="section-eyebrow" style="color:var(--gold-light)">Customer Stories</div>
+      <h2 class="section-title" style="color:var(--cream)">What Our Clients Say</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.5)">Thousands of families trust Furniture World to
+        make their houses feel like home.</p>
     </div>
+    <div class="reviews-grid">
 
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">Get in Touch</div>
-    <h2 class="section-title">Visit or Call Us Today</h2>
-    <p class="section-subtitle">We're here to help you find the perfect furniture for your space.</p>
-  </div>
-  <div class="contact-grid">
-    <div class="contact-info reveal">
-      <h3>Our Showroom</h3>
-      <div class="contact-detail">
-        <div class="contact-icon">📍</div>
-        <div class="contact-detail-text">
-          <strong>Address</strong>
-          <span>Gondlitand, Near Genius Public School, Giridih, Jharkhand</span>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The sheesham wood sofa we ordered is absolutely gorgeous. The craftsmanship is
+          impeccable — every detail feels premium. Delivery was on time and the team was incredibly professional."</p>
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">R</div>
+          <div>
+            <div class="reviewer-name">Rahul Mehta</div>
+            <div class="reviewer-city">Giridih, Jharkhand</div>
+          </div>
+          <span class="verified-badge">✓ Verified</span>
         </div>
       </div>
-      <div class="contact-detail">
-        <div class="contact-icon">📞</div>
-        <div class="contact-detail-text">
-          <strong>Call Us</strong>
-          <a href="tel:+919771335634">+91 97713 35634</a>
-          <a href="tel:+918797889823">+91 87978 89823</a>
-        </div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-icon">💬</div>
-        <div class="contact-detail-text">
-          <strong>WhatsApp</strong>
-          <a href="https://wa.me/916206429713" target="_blank">+91 62064 29713</a>
-        </div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-icon">✉️</div>
-        <div class="contact-detail-text">
-          <strong>Email</strong>
-          <a href="mailto:contact@furnitureworld.in">contact@furnitureworld.in</a>
-        </div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-icon">🕐</div>
-        <div class="contact-detail-text">
-          <strong>Opening Hours</strong>
-          <span>Mon – Sat: 10:00 AM – 7:00 PM</span>
-          <span>Sunday: 11:00 AM – 6:00 PM</span>
-        </div>
-      </div>
-      <div class="social-row">
-        <a href="#" class="social-btn social-ig">📸 Instagram</a>
-        <a href="#" class="social-btn social-fb">👍 Facebook</a>
-        <a href="https://wa.me/916206429713" class="social-btn social-wa">💬 WhatsApp</a>
-      </div>
-    </div>
 
-    <div class="order-form reveal">
-      <h3>Send an Enquiry</h3>
-      <div class="form-row">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"We furnished our entire home from Furniture World and couldn't be happier. The custom
+          wardrobe fits perfectly and the quality is miles ahead of what we'd seen elsewhere at twice the price."</p>
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">P</div>
+          <div>
+            <div class="reviewer-name">Priya Sharma</div>
+            <div class="reviewer-city">Dhanbad, Jharkhand</div>
+          </div>
+          <span class="verified-badge">✓ Verified</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Exceptional experience from start to finish. The team helped me choose the right pieces
+          for my space, and the EMI option made it stress-free. I've already recommended Furniture World to six
+          friends!"</p>
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <div class="reviewer-name">Arjun Nair</div>
+            <div class="reviewer-city">Jamua, Giridih</div>
+          </div>
+          <span class="verified-badge">✓ Verified</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2 class="section-title">Visit or Call Us Today</h2>
+      <p class="section-subtitle">We're here to help you find the perfect furniture for your space.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Our Showroom</h3>
+        <div class="contact-detail">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail-text">
+            <strong>Address</strong>
+            <span>Gondlitand, Near Genius Public School, Giridih, Jharkhand</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail-text">
+            <strong>Call Us</strong>
+            <a href="tel:+919771335634">+91 97713 35634</a>
+            <a href="tel:+918797889823">+91 87978 89823</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">💬</div>
+          <div class="contact-detail-text">
+            <strong>WhatsApp</strong>
+            <a href="https://wa.me/919771335634" target="_blank">+91 97713 35634</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            <a href="mailto:contact@furnitureworld.in">contact@furnitureworld.in</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-detail-text">
+            <strong>Opening Hours</strong>
+            <span>Mon – Sat: 10:00 AM – 7:00 PM</span>
+            <span>Sunday: 11:00 AM – 6:00 PM</span>
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="#" class="social-btn social-ig">📸 Instagram</a>
+          <a href="#" class="social-btn social-fb">👍 Facebook</a>
+          <a href="https://wa.me/919771335634" class="social-btn social-wa">💬 WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="order-form reveal">
+        <h3>Send an Enquiry</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="f-name" placeholder="Enter your name" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="f-phone" placeholder="+91 98765 XXXXX" />
+          </div>
+        </div>
         <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" id="f-name" placeholder="Enter your name" />
+          <label>Email Address</label>
+          <input type="email" id="f-email" placeholder="yourname@email.com" />
         </div>
         <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" id="f-phone" placeholder="+91 98765 XXXXX" />
+          <label>Product Interest</label>
+          <select id="f-product">
+            <option value="">-- Select a Product --</option>
+            <option>Royal Teak 3-Seater Sofa</option>
+            <option>Walnut Executive Dining Table</option>
+            <option>Empress King Bed Frame</option>
+            <option>Heritage Oak Bookshelf</option>
+            <option>Luxe Recline Lounge Chair</option>
+            <option>Grand Mahogany Wardrobe</option>
+            <option>Custom Order</option>
+            <option>Other / Not Sure</option>
+          </select>
         </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea id="f-msg" placeholder="Tell us about your requirements, room size, or any questions..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitForm()">Send Enquiry
+          →</button>
       </div>
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" id="f-email" placeholder="yourname@email.com" />
-      </div>
-      <div class="form-group">
-        <label>Product Interest</label>
-        <select id="f-product">
-          <option value="">-- Select a Product --</option>
-          <option>Royal Teak 3-Seater Sofa</option>
-          <option>Walnut Executive Dining Table</option>
-          <option>Empress King Bed Frame</option>
-          <option>Heritage Oak Bookshelf</option>
-          <option>Luxe Recline Lounge Chair</option>
-          <option>Grand Mahogany Wardrobe</option>
-          <option>Custom Order</option>
-          <option>Other / Not Sure</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Your Message</label>
-        <textarea id="f-msg" placeholder="Tell us about your requirements, room size, or any questions..."></textarea>
-      </div>
-      <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitForm()">Send Enquiry →</button>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <div class="map-section">
+    <div class="map-placeholder">
+      <div class="map-pin">📍</div>
+      <div class="map-address">Gondlitand, Near Genius Public School, Giridih, Jharkhand</div>
+      <a class="map-link" href="https://maps.google.com/?q=Giridih,Jharkhand" target="_blank">Open in Google Maps →</a>
     </div>
   </div>
-</section>
 
-<!-- MAP -->
-<div class="map-section">
-  <div class="map-placeholder">
-    <div class="map-pin">📍</div>
-    <div class="map-address">Gondlitand, Near Genius Public School, Giridih, Jharkhand</div>
-    <a class="map-link" href="https://maps.google.com/?q=Giridih,Jharkhand" target="_blank">Open in Google Maps →</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="#home" class="nav-logo" style="font-size:1.4rem">Furniture <span>World</span></a>
-      <p>Crafting timeless furniture since 2006. Every piece tells a story of skilled artisanship, premium materials, and a passion for beautiful living spaces.</p>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="nav-logo" style="font-size:1.4rem">Furniture <span>World</span></a>
+        <p>Crafting timeless furniture since 2006. Every piece tells a story of skilled artisanship, premium materials,
+          and a passion for beautiful living spaces.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Living Room</a></li>
+          <li><a href="#shop">Bedroom</a></li>
+          <li><a href="#shop">Dining Room</a></li>
+          <li><a href="#shop">Study Room</a></li>
+          <li><a href="#shop">Custom Orders</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <!-- <li><a href="#">Shipping Policy</a></li> -->
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Warranty Info</a></li>
+          <!-- <li><a href="#">Track Order</a></li> -->
+        </ul>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Shop</h4>
-      <ul>
-        <li><a href="#shop">Living Room</a></li>
-        <li><a href="#shop">Bedroom</a></li>
-        <li><a href="#shop">Dining Room</a></li>
-        <li><a href="#shop">Study Room</a></li>
-        <li><a href="#shop">Custom Orders</a></li>
-      </ul>
+    <div class="footer-bottom">
+      © 2026 Furniture World. All rights reserved. Crafted with ❤️ in India.
     </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Support</h4>
-      <ul>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">Shipping Policy</a></li>
-        <li><a href="#">Return Policy</a></li>
-        <li><a href="#">Warranty Info</a></li>
-        <li><a href="#">Track Order</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    © 2026 Furniture World. All rights reserved. Crafted with ❤️ in India.
-  </div>
-</footer>
+  </footer>
 
-<!-- FLOATING CALL BUTTON -->
-<a href="tel:+916206429713" class="floating-call" title="Call Us">📞</a>
+  <!-- FLOATING CALL BUTTON -->
+  <a href="tel:+919771335634" class="floating-call" title="Call Us">📞</a>
 
-<!-- TOAST -->
-<div class="toast" id="toast">✅ Enquiry sent! We'll contact you within 24 hours.</div>
+  <!-- TOAST -->
+  <div class="toast" id="toast">✅ Enquiry sent! We'll contact you within 24 hours.</div>
 
-<script>
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  // Hamburger
-  function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-
-  // Close menu on link click
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
-  });
-
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
     });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => observer.observe(el));
 
-  // Form submit
-  function submitForm() {
-    const name = document.getElementById('f-name').value.trim();
-    const phone = document.getElementById('f-phone').value.trim();
-    if (!name || !phone) {
-      alert('Please fill in your name and phone number.');
-      return;
+    // Hamburger
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
     }
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 4000);
-    // Reset form
-    ['f-name','f-phone','f-email','f-product','f-msg'].forEach(id => {
-      const el = document.getElementById(id);
-      el.tagName === 'SELECT' ? el.selectedIndex = 0 : (el.value = '');
-    });
-  }
 
-  // Scroll to contact
-  function scrollToContact() {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-  }
-</script>
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Form submit
+    function submitForm() {
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      if (!name || !phone) {
+        alert('Please fill in your name and phone number.');
+        return;
+      }
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+      // Reset form
+      ['f-name', 'f-phone', 'f-email', 'f-product', 'f-msg'].forEach(id => {
+        const el = document.getElementById(id);
+        el.tagName === 'SELECT' ? el.selectedIndex = 0 : (el.value = '');
+      });
+    }
+
+    // Scroll to contact
+    function scrollToContact() {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
+
 </html>
