@@ -25,44 +25,47 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 revealEls.forEach(el => observer.observe(el));
 
-// Form submit
-function submitForm() {
-  const name = document.getElementById('f-name').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const product = document.getElementById('f-product').value;
-  const message = document.getElementById('f-msg').value.trim();
-
-  if (!name || !phone) {
-    alert('Please fill in your name and phone number.');
-    return;
-  }
-
-  // Construct email body
-  const subject = encodeURIComponent(`New Enquiry from ${name} - Furniture World`);
-  const body = encodeURIComponent(
-    `Name: ${name}\n` +
-    `Phone: ${phone}\n` +
-    `Email: ${email || 'Not provided'}\n` +
-    `Product: ${product || 'Not selected'}\n\n` +
-    `Message:\n${message || 'No message provided'}`
-  );
-
-  // Send email using mailto
-  const recipient = 'furnitureworldsgiridih@gmail.com';
-  window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-
-  const toast = document.getElementById('toast');
-  if (toast) {
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 4000);
-  }
-
-  // Reset form
-  ['f-name', 'f-phone', 'f-email', 'f-product', 'f-msg'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.tagName === 'SELECT' ? el.selectedIndex = 0 : (el.value = '');
+// Form submit handling
+const enquiryForm = document.getElementById('enquiry-form');
+if (enquiryForm) {
+  enquiryForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = enquiryForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending...';
+    
+    const formData = new FormData(enquiryForm);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xeenlbky', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Show success toast
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+        enquiryForm.reset();
+      } else {
+        alert('Oops! There was a problem submitting your form. Please try again.');
+      }
+    } catch (error) {
+      alert('Oops! There was a problem connecting to the server. Please check your internet and try again.');
+    } finally {
+      // Re-enable button and restore text
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
     }
   });
 }
