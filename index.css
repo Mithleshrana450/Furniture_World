@@ -1279,3 +1279,99 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ─── CATEGORY FILTER NAV ─────────────────────────────── */
+.category-filter-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto 48px;
+  max-width: 860px;
+  padding: 0 20px;
+}
+
+.cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border-radius: 50px;
+  border: 1.5px solid var(--gold, #b8976a);
+  background: transparent;
+  color: var(--gold, #b8976a);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease,
+              transform 0.18s ease, box-shadow 0.22s ease;
+}
+
+.cat-btn:hover {
+  background: var(--gold, #b8976a);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 151, 106, 0.35);
+}
+
+.cat-btn.active {
+  background: var(--gold, #b8976a);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(184, 151, 106, 0.4);
+}
+
+/* Product card show/hide with fade */
+.product-card {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.product-card.hidden {
+  display: none;
+}
+
+.product-card.fade-in {
+  animation: fadeInCard 0.35s ease forwards;
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Empty state message */
+.no-products-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.no-products-msg span {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+/* Mobile: scrollable horizontal pill strip */
+@media (max-width: 600px) {
+  .category-filter-wrap {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 4px 20px 12px;
+    gap: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .category-filter-wrap::-webkit-scrollbar { display: none; }
+  .cat-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 9px 18px;
+    font-size: 0.83rem;
+  }
+}

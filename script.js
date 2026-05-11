@@ -77,3 +77,55 @@ function scrollToContact() {
     contactEl.scrollIntoView({ behavior: 'smooth' });
   }
 }
+
+// ─── CATEGORY FILTER ──────────────────────────────────────
+(function () {
+  const buttons = document.querySelectorAll('.cat-btn');
+  const cards   = document.querySelectorAll('.product-card');
+  const grid    = document.querySelector('.products-grid');
+
+  function removeEmptyMsg() {
+    const msg = grid.querySelector('.no-products-msg');
+    if (msg) msg.remove();
+  }
+
+  function showEmptyMsg() {
+    removeEmptyMsg();
+    const div = document.createElement('div');
+    div.className = 'no-products-msg';
+    div.innerHTML = '<span>🚧</span>Coming soon — check back shortly!';
+    grid.appendChild(div);
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      let visibleCount = 0;
+
+      removeEmptyMsg();
+
+      cards.forEach(card => {
+        const cat = card.dataset.category || '';
+        const matches = filter === 'all' || cat === filter;
+
+        if (matches) {
+          card.classList.remove('hidden');
+          card.classList.add('fade-in');
+          card.addEventListener('animationend', () => {
+            card.classList.remove('fade-in');
+          }, { once: true });
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('fade-in');
+        }
+      });
+
+      if (visibleCount === 0) showEmptyMsg();
+    });
+  });
+})();
